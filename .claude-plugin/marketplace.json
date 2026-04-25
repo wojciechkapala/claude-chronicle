@@ -1,0 +1,28 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-chronicle",
+  "description": "Bridges Codex Chronicle activity summaries into Claude Code via SessionStart and UserPromptSubmit hooks.",
+  "owner": {
+    "name": "Wojciech Kapała",
+    "url": "https://github.com/wojciechkapala"
+  },
+  "metadata": {
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "claude-chronicle",
+      "source": "./",
+      "description": "Auto-injects Codex Chronicle 10-minute screen-recording summaries into Claude Code so it knows what you have been doing on your computer.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Wojciech Kapała",
+        "email": "wojtek@botmate.pl"
+      },
+      "category": "context",
+      "tags": ["codex", "chronicle", "context", "hooks", "memory"],
+      "homepage": "https://github.com/wojciechkapala/claude-chronicle",
+      "license": "MIT"
+    }
+  ]
+}
