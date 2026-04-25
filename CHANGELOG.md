@@ -2,6 +2,14 @@
 
 All notable changes to **claude-chronicle** are recorded here. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] — 2026-04-25
+
+### Added
+- Hero image at the top of the README (`assets/hero.png`) — large `Claude Chronicle.` cover with the three feature bullets, install commands, a terminal mock of `/claude-chronicle:remind` in action, and the Codex → Claude Code visual.
+
+### Changed
+- README badge bumped to 0.4.1 to match the manifest.
+
 ## [0.4.0] — 2026-04-25
 
 ### Added

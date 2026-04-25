@@ -1,6 +1,6 @@
 {
   "name": "claude-chronicle",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Bridges Codex Chronicle screen-recording summaries into Claude Code so Claude knows what you have been doing on your computer. Auto-injects recent activity, exposes a full archive manifest for time-travel queries, and ships a /claude-chronicle:remind skill that searches by time, topic, or both.",
   "author": {
     "name": "Wojciech Kapała",

@@ -1,9 +1,11 @@
 # claude-chronicle
 
+![claude-chronicle — Codex Chronicle's screen-recording memory, piped into Claude Code](assets/hero.png)
+
 > Bring Codex Chronicle's screen-recording memory into Claude Code. Ask Claude *"what was I doing 5 hours ago?"* or *"when did I last touch the auth bug?"* and get a real answer.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Plugin version](https://img.shields.io/badge/version-0.4.0-blue.svg)](CHANGELOG.md)
+[![Plugin version](https://img.shields.io/badge/version-0.4.1-blue.svg)](CHANGELOG.md)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-7C3AED.svg)](https://code.claude.com/docs/en/plugins)
 
 [Codex Chronicle](https://github.com/openai/codex) passively records your screen, runs OCR, and writes a markdown summary every ~10 minutes describing what you have been doing across your apps. **claude-chronicle** is a Claude Code plugin that pipes those summaries into Claude Code as context, so Claude knows what you have been working on outside the terminal — past activity, current focus, and the live screen.
