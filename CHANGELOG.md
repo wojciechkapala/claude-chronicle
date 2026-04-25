@@ -2,6 +2,15 @@
 
 All notable changes to **claude-chronicle** are recorded here. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] — 2026-04-25
+
+### Added
+- **`/claude-chronicle:remind` skill** — on-demand search of the Chronicle archive. Three auto-detected modes:
+  1. **Time** — argument is a time reference (EN: `5 hours ago`, `yesterday evening`, `Tuesday afternoon`; PL: `5 godzin temu`, `wczoraj wieczorem`, `wtorek po południu`). The skill resolves it to a UTC window and picks files whose filename timestamp falls inside.
+  2. **Topic** — argument is a thing the user wants to recall but does not say when (EN: `the auth bug`, `React 418 error`, `Figma logo project`; PL: `ten bug z auth`, `błąd Reacta 418`, `projekt logo w Figmie`). The skill `rg`-greps the Chronicle archive for the keyword(s), ranks by recency, and reports **when** the user last touched the topic. Falls back to OCR sidecars (`*.ocr.jsonl`) if no markdown match is found.
+  3. **Hybrid** — argument has both: `the auth bug yesterday`, `Figma logo last week`. The skill narrows by time first, then keyword-greps inside that window.
+- The skill runs autonomously (no "do you want me to read X?" prompts), reads picked entries, skips noisy `Recording summary` / `Citations` sections, and answers in the user's language.
+
 ## [0.2.0] — 2026-04-25
 
 ### Added

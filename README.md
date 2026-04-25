@@ -27,6 +27,42 @@ Because the SessionStart manifest lists **every** Chronicle file with its local 
 
 No regex / NLU in the hook — Claude does the time reasoning over the manifest table itself, then uses the `Read` tool to pull only the entries it actually needs.
 
+### `/claude-chronicle:remind` — on-demand recall
+
+For a force-fresh search of the Chronicle archive (e.g. when the SessionStart manifest has been compacted out of context), invoke the bundled skill. It supports three auto-detected modes:
+
+**1. By time** — you remember when, not what:
+
+```
+/claude-chronicle:remind 5 hours ago
+/claude-chronicle:remind wczoraj wieczorem
+/claude-chronicle:remind Tuesday afternoon
+/claude-chronicle:remind 30 minut temu
+```
+
+**2. By topic** — you remember what, not when:
+
+```
+/claude-chronicle:remind the auth bug
+/claude-chronicle:remind React 418 error
+/claude-chronicle:remind projekt logo w Figmie
+/claude-chronicle:remind ta migracja SQL z poniedziałku
+```
+
+The skill `rg`-greps the whole Chronicle archive for your keyword(s), reports **when** you last touched the topic, and summarises what you were doing then.
+
+**3. Hybrid** — both signals at once:
+
+```
+/claude-chronicle:remind the auth bug yesterday
+/claude-chronicle:remind Figma logo last week
+/claude-chronicle:remind ten error 418 wczoraj wieczorem
+```
+
+The skill narrows by time first, then keyword-greps inside that window.
+
+In all three modes the skill runs autonomously (no "do you want me to read X?" prompts), reads only the picked entries, skips the noisy `Recording summary` / `Citations` sections, and answers in your language (PL → PL, EN → EN), naming the source filename(s) so you can verify.
+
 ### Looking at the screen
 
 The live state section also exposes the ephemeral screen-recording side of Chronicle:

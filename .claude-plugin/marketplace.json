@@ -7,14 +7,14 @@
     "url": "https://github.com/wojciechkapala"
   },
   "metadata": {
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "claude-chronicle",
       "source": "./",
       "description": "Auto-injects Codex Chronicle 10-minute screen-recording summaries into Claude Code so it knows what you have been doing on your computer.",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "author": {
         "name": "Wojciech Kapała",
         "email": "wojtek@botmate.pl"
