@@ -8,8 +8,14 @@ set -euo pipefail
 #   SessionStart      - bootstrap: last N entries in full content + manifest of
 #                       ALL files in the Chronicle directory (timestamps + paths)
 #                       so Claude knows the full memory window and can Read any
-#                       older entry on demand (e.g. "what was I doing 5h ago",
-#                       "wczoraj wieczorem", "tydzień temu").
+#                       older entry on demand. Examples Claude can answer from
+#                       the manifest:
+#                         EN: "what was I doing 5 hours ago?",
+#                             "what did I work on yesterday evening?",
+#                             "summarize my whole week".
+#                         PL: "co robiłem 5 godzin temu?",
+#                             "nad czym pracowałem wczoraj wieczorem?",
+#                             "podsumuj mi cały tydzień".
 #   UserPromptSubmit  - delta only: entries newer than last-seen.
 
 input="$(cat)"
@@ -211,7 +217,7 @@ trap 'rm -f "$body_file"' EXIT
     fi
     printf 'Range: **%s** → **%s**.\n' "$(format_dt "$oldest_m")" "$(format_dt "$newest_m")"
     printf 'Directory: `%s`\n\n' "$CHRONICLE_DIR"
-    printf 'To answer questions about earlier activity (e.g. "5 hours ago", "yesterday evening", "wczoraj wieczorem", "tydzień temu"), pick the most relevant row(s) from the table by `Timestamp` / `Age` and use the **Read** tool with the absolute path shown in `File`.\n\n'
+    printf '%s\n\n' 'To answer questions about earlier activity in any language — e.g. EN: "5 hours ago" / "yesterday evening" / "last week", PL: "5 godzin temu" / "wczoraj wieczorem" / "tydzień temu" — pick the most relevant row(s) from the table by `Timestamp` / `Age` and use the **Read** tool with the absolute path shown in `File`.'
 
     printf '| Timestamp (local) | Age | Kind | File |\n'
     printf '|---|---|---|---|\n'

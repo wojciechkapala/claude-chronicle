@@ -1,6 +1,6 @@
 {
   "name": "claude-chronicle",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Bridges Codex Chronicle 10-minute activity summaries into Claude Code via SessionStart + UserPromptSubmit hooks.",
   "author": {
     "name": "Wojciech Kapała",

@@ -18,10 +18,12 @@ Both events skip the `## Recording summary` and `## Citations` sections of each 
 
 Because the SessionStart manifest lists **every** Chronicle file with its local timestamp and "Xh ago" tag, you can ask about anything in that window and Claude will pick the right file(s) and read them:
 
-- "co robiłem 5 godzin temu?"
-- "what was I working on yesterday evening?"
-- "przedwczoraj nad południem nad jakim projektem siedziałem?"
-- "podsumuj mi cały tydzień"
+| English | Polski |
+|---|---|
+| "What was I doing 5 hours ago?" | "Co robiłem 5 godzin temu?" |
+| "What was I working on yesterday evening?" | "Nad czym pracowałem wczoraj wieczorem?" |
+| "What project was I on the day before yesterday around noon?" | "Przedwczoraj nad południem nad jakim projektem siedziałem?" |
+| "Summarize my whole week." | "Podsumuj mi cały tydzień." |
 
 No regex / NLU in the hook — Claude does the time reasoning over the manifest table itself, then uses the `Read` tool to pull only the entries it actually needs.
 
@@ -77,7 +79,7 @@ All optional, controlled via environment variables:
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `CODEX_CHRONICLE_DIR` | `~/.codex/memories_extensions/chronicle/resources` | Directory containing `*-10min-*.md` (and `*-6h-*.md` if any) files |
+| `CODEX_CHRONICLE_DIR` | `~/.codex/memories_extensions/chronicle/resources` | Directory containing `*-10min-*.md`  files |
 | `CODEX_CHRONICLE_BOOTSTRAP_N` | `3` | How many recent entries to inline as full content on `SessionStart` |
 | `CODEX_CHRONICLE_MAX_AGE_HOURS` | `12` | Window for the "full content" entries on `SessionStart` (manifest is unaffected) |
 | `CODEX_CHRONICLE_MANIFEST_MAX` | `500` | Hard cap on how many entries to list in the manifest table (most recent are kept) |
@@ -117,7 +119,7 @@ Look for `SessionStart` hook execution and the injected `systemMessage`.
 ## Limitations
 
 - Hook configuration is loaded once at session start. Editing `hooks.json` or the script does not affect the running session — restart Claude Code.
-- Reads only `*-10min-*.md` files. Chronicle's 6-hour rollups (`*-6h-*.md`) are intentionally skipped in this version.
+- 6-hour rollups (`*-6h-*.md`) are picked up automatically alongside `*-10min-*.md` files (the manifest tags them with `Kind = 6h`), but Chronicle only generates them after running for several hours, so they may not exist yet on a given machine.
 - The `last-seen` cursor is global (one file across all sessions), not per-session. This works because Chronicle writes new files in chronological order.
 
 ## License
