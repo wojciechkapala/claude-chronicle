@@ -14,7 +14,7 @@ Both events skip the `## Recording summary` and `## Citations` sections of each 
 ## Prerequisites
 
 - macOS or Linux
-- `bash` 4+ and `jq` available in `PATH`
+- `bash` 3.2+ (the macOS default works) and `jq` available in `PATH`
 - [Codex CLI](https://github.com/openai/codex) installed and Chronicle enabled, writing to `~/.codex/memories_extensions/chronicle/resources/`
 
 If Chronicle is not active or the directory is empty, the plugin exits silently — it never breaks a Claude Code session.
@@ -67,10 +67,14 @@ The plugin tracks the newest Chronicle entry it has already shown in `${CLAUDE_P
 
 ### Run the script manually
 
+Point `PLUGIN_DIR` at wherever you cloned or installed the plugin (e.g. `~/.claude/plugins/claude-chronicle` for Option C, or your local clone):
+
 ```bash
+PLUGIN_DIR=~/.claude/plugins/claude-chronicle
+
 echo '{"hook_event_name":"SessionStart","session_id":"test"}' \
-  | CLAUDE_PLUGIN_ROOT=/Users/wojciechkapala/claude-chronicle \
-    bash /Users/wojciechkapala/claude-chronicle/hooks/scripts/inject-chronicle-context.sh \
+  | CLAUDE_PLUGIN_ROOT="$PLUGIN_DIR" \
+    bash "$PLUGIN_DIR/hooks/scripts/inject-chronicle-context.sh" \
   | jq .
 ```
 
@@ -79,7 +83,7 @@ Expected: a JSON object with `systemMessage` containing your latest activity. Wi
 ### Tail the debug log inside Claude Code
 
 ```bash
-claude --debug --plugin-dir /Users/wojciechkapala/claude-chronicle
+claude --debug --plugin-dir ~/.claude/plugins/claude-chronicle
 ```
 
 Look for `SessionStart` hook execution and the injected `systemMessage`.
