@@ -2,6 +2,19 @@
 
 All notable changes to **claude-chronicle** are recorded here. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] — 2026-04-25
+
+### Added
+- Recommended manifest fields for marketplace listing: `homepage`, `repository`, `author.url` and an expanded `keywords` list (`screen-recording`, `time-travel`, `recall`).
+- README marketplace polish: tagline at the top, version + license + Claude Code badges, clearer install/update instructions.
+
+### Changed
+- Sharper, longer `description` in `plugin.json` and `marketplace.json` so users browsing marketplaces immediately see the three value props (auto-context, archive manifest, `/remind` skill).
+- `metadata.description` added at the marketplace level.
+
+### Fixed
+- Marketplace manifest had two unrecognized keys at the root (`$schema`, `description`) that failed `claude plugin validate`. Removed; description moved into `metadata.description`. The plugin manifest and marketplace manifest now both pass `claude plugin validate` cleanly — required before submission to the official Anthropic marketplace.
+
 ## [0.3.0] — 2026-04-25
 
 ### Added
